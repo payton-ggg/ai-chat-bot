@@ -25,7 +25,6 @@ export const processTranscript = async (
               content: transcript,
             },
           ],
-          max_tokens: 150,
           temperature: 0.7,
           format: "text",
           system:
