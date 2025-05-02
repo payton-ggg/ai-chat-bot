@@ -1,0 +1,43 @@
+import React, { createContext, useState, useCallback, useContext } from 'react';
+import { Message, VoiceContextType, VoiceState } from '../types';
+
+const VoiceContext = createContext<VoiceContextType | null>(null);
+
+export const useVoice = () => {
+  const context = useContext(VoiceContext);
+  if (!context) {
+    throw new Error('useVoice must be used within a VoiceProvider');
+  }
+  return context;
+};
+
+export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [voiceState, setVoiceState] = useState<VoiceState>('idle');
+
+  const addMessage = useCallback((role: 'user' | 'assistant', content: string) => {
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now().toString(),
+        role,
+        content,
+        timestamp: new Date(),
+      },
+    ]);
+  }, []);
+
+  const clearConversation = useCallback(() => {
+    setMessages([]);
+  }, []);
+
+  const value = {
+    messages,
+    addMessage,
+    voiceState,
+    setVoiceState,
+    clearConversation,
+  };
+
+  return <VoiceContext.Provider value={value}>{children}</VoiceContext.Provider>;
+};
