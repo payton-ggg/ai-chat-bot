@@ -1,0 +1,27 @@
+{
+  "id": "01969028-8816-5906-9ede-6a250ff2480f",
+  "object": "chat.completion",
+  "created": 1746175295,
+  "model": "meta-llama/Llama-3.2-90B-Vision-Instruct",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "reasoning_content": null,
+        "content": "I'd love to help you identify the quote. Damon Salvatore is a character from the popular TV show 'The Vampire Diaries'. However, I would need more context or information about the quote you are thinking of. Can you remember any details or phrases from the quote?",
+        "tool_calls": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop",
+      "stop_reason": null
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 42,
+    "total_tokens": 98,
+    "completion_tokens": 56,
+    "prompt_tokens_details": null
+  },
+  "prompt_logprobs": null
+}

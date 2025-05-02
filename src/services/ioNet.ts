@@ -1,4 +1,4 @@
-const IO_NET_API_KEY = import.meta.env.IO_NET_API_KEY;
+const IO_NET_API_KEY = import.meta.env.VITE_IO_NET_API_KEY;
 
 export const processTranscript = async (
   transcript: string
@@ -18,7 +18,7 @@ export const processTranscript = async (
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/Llama-3.2-90B-Vision-Instruct",
+          model: "meta-llama/Llama-3.3-70B-Instruct",
           messages: [
             {
               role: "user",
@@ -53,7 +53,7 @@ export const processTranscript = async (
 
     const data = await response.json();
     return (
-      JSON.stringify(data, null, 2) ||
+      data["choices"][0]["message"]["content"] ||
       "I apologize, but I couldn't generate a response at the moment. Please try again."
     );
   } catch (error) {
