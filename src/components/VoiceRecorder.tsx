@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useVoice } from "../contexts/VoiceContext";
 import { processTranscript } from "../services/ioNet";
+import { useModelStore } from "../services/store";
 
 const ChatInput: React.FC = () => {
   const { voiceState, setVoiceState, addMessage } = useVoice();
-  const {};
+  const { model } = useModelStore();
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,7 +20,7 @@ const ChatInput: React.FC = () => {
     setVoiceState("processing");
 
     try {
-      const response = await processTranscript(userMessage);
+      const response = await processTranscript(userMessage, model);
       addMessage("assistant", response);
     } catch (error) {
       console.error("Error processing message:", error);

@@ -1,0 +1,785 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "object": "model",
+      "created": 1744194232,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-35450ac5d2794bb896e45be038f2a1ee",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "Qwen/QwQ-32B",
+      "object": "model",
+      "created": 1733844366,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-3c3cf80ae0b14e9d93630bf1db0c7ee9",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "meta-llama/Llama-3.2-90B-Vision-Instruct",
+      "object": "model",
+      "created": 1739118983,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-b581f4628f9541229d63d90720b7a719",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-R1",
+      "object": "model",
+      "created": 1738563250,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-c480509eb4d14a6b8f6c3e43ab419b52",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+      "object": "model",
+      "created": 1737459311,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-c9137c9e746142fc9ecf3fd54853785d",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+      "object": "model",
+      "created": 1737459251,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-ef2118d5fd7d40b58867e819223ec9d6",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "meta-llama/Llama-3.3-70B-Instruct",
+      "object": "model",
+      "created": 1733762183,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-f9e7d31fe34a4fbeade6dd685cddcd45",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2-VL-7B-Instruct",
+      "object": "model",
+      "created": 1739953381,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-41eae834556e45e3a27a391d529f405e",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "databricks/dbrx-instruct",
+      "object": "model",
+      "created": 1737565523,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-e12fa926a591403bbee50e82f1812fb5",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "mistralai/Ministral-8B-Instruct-2410",
+      "object": "model",
+      "created": 1732562795,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-6b4f8259801e44bc9e3ae444b813a73d",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "netease-youdao/Confucius-o1-14B",
+      "object": "model",
+      "created": 1738136850,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-b15c51fd3eae4f45a3007b38f3ecf175",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "nvidia/AceMath-7B-Instruct",
+      "object": "model",
+      "created": 1737627846,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-a218fd09b541416c9739384413b53818",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "google/gemma-3-27b-it",
+      "object": "model",
+      "created": 1737590934,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-7e27b5e8a2e84c9aae9725717bf79cc5",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "neuralmagic/Llama-3.1-Nemotron-70B-Instruct-HF-FP8-dynamic",
+      "object": "model",
+      "created": 1737040766,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-adaaa9f546cb4685a37547c83d3d5598",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "mistralai/Mistral-Large-Instruct-2411",
+      "object": "model",
+      "created": 1737040331,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-304d4f4103a64a369db27f8512492f5f",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "microsoft/phi-4",
+      "object": "model",
+      "created": 1737040215,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-db703c7233cd4de995ff4f391d821494",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "SentientAGI/Dobby-Mini-Unhinged-Llama-3.1-8B",
+      "object": "model",
+      "created": 1742464667,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-d00a6a0553a944dc847dcc38461d1ad0",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "watt-ai/watt-tool-70B",
+      "object": "model",
+      "created": 1741622015,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-2ae0d7d7d7954fc6bb9f6edd15720eec",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "bespokelabs/Bespoke-Stratos-32B",
+      "object": "model",
+      "created": 1737962231,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-8eabc334ae6f4c7bb8b903f38e8ee92a",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "NovaSky-AI/Sky-T1-32B-Preview",
+      "object": "model",
+      "created": 1737961754,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-d1a2267ab1284abdba35b5f057021f12",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "tiiuae/Falcon3-10B-Instruct",
+      "object": "model",
+      "created": 1737565988,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-2ac44d0fb5fc4d938d6f7b60ccff49b0",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "THUDM/glm-4-9b-chat",
+      "object": "model",
+      "created": 1736168422,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-908925390efe47eba5a6ac8b13e69480",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-Coder-32B-Instruct",
+      "object": "model",
+      "created": 1732562850,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-d306cb210a744cecae73d20363f339ea",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "CohereForAI/aya-expanse-32b",
+      "object": "model",
+      "created": 1732287089,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-eb8d043dfffc40a5a423da23925e81e4",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "jinaai/ReaderLM-v2",
+      "object": "model",
+      "created": 1737961931,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-f627f765c3bb482c8a5d291fd319c2b4",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "openbmb/MiniCPM3-4B",
+      "object": "model",
+      "created": 1737628037,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-3ccfbe6324ed408795bd6e03bcfb1b1e",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "object": "model",
+      "created": 1732287200,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-b5c76623866a42ddb9760b55374f7732",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "ozone-ai/0x-lite",
+      "object": "model",
+      "created": 1738136728,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-ac1f52f6f5f04611834f6855dc6478b6",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "microsoft/Phi-3.5-mini-instruct",
+      "object": "model",
+      "created": 1736168501,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-096dfa24d0d6490380d1c6495a28b1ac",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    },
+    {
+      "id": "ibm-granite/granite-3.1-8b-instruct",
+      "object": "model",
+      "created": 1736168022,
+      "owned_by": "io-intelligence",
+      "root": null,
+      "parent": null,
+      "max_model_len": null,
+      "permission": [
+        {
+          "id": "modelperm-87485aec32b847c88c8b824008e919d9",
+          "object": "model_permission",
+          "created": 1745320848,
+          "allow_create_engine": false,
+          "allow_sampling": true,
+          "allow_logprobs": true,
+          "allow_search_indices": false,
+          "allow_view": true,
+          "allow_fine_tuning": false,
+          "organization": "*",
+          "group": null,
+          "is_blocking": false
+        }
+      ]
+    }
+  ]
+}
+"meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+"Qwen/QwQ-32B",
+"meta-llama/Llama-3.2-90B-Vision-Instruct",
+"deepseek-ai/DeepSeek-R1",
+"deepseek-ai/DeepSeek-R1-Distill-Llama-70B",
+"deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+"meta-llama/Llama-3.3-70B-Instruct",
+"Qwen/Qwen2-VL-7B-Instruct",
+"databricks/dbrx-instruct",
+"mistralai/Ministral-8B-Instruct-2410",
+"netease-youdao/Confucius-o1-14B",
+"nvidia/AceMath-7B-Instruct",
+"google/gemma-3-27b-it",
+"neuralmagic/Llama-3.1-Nemotron-70B-Instruct-HF-FP8-dynamic",
+"mistralai/Mistral-Large-Instruct-2411",
+"microsoft/phi-4",
+"SentientAGI/Dobby-Mini-Unhinged-Llama-3.1-8B",
+"watt-ai/watt-tool-70B",
+"bespokelabs/Bespoke-Stratos-32B",
+"NovaSky-AI/Sky-T1-32B-Preview",
+"tiiuae/Falcon3-10B-Instruct",
+"THUDM/glm-4-9b-chat",
+"Qwen/Qwen2.5-Coder-32B-Instruct",
+"CohereForAI/aya-expanse-32b",
+"jinaai/ReaderLM-v2",
+"openbmb/MiniCPM3-4B",
+"Qwen/Qwen2.5-1.5B-Instruct",
+"ozone-ai/0x-lite",
+"microsoft/Phi-3.5-mini-instruct",
+"ibm-granite/granite-3.1-8b-instruct" 
