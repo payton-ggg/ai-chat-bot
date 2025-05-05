@@ -1,7 +1,8 @@
 const IO_NET_API_KEY = import.meta.env.VITE_IO_NET_API_KEY;
 
 export const processTranscript = async (
-  transcript: string
+  transcript: string,
+  model: string
 ): Promise<string> => {
   if (!navigator.onLine) {
     return "You appear to be offline. Please check your internet connection and try again.";
@@ -18,7 +19,7 @@ export const processTranscript = async (
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          model: "meta-llama/Llama-3.3-70B-Instruct",
+          model: model,
           messages: [
             {
               role: "user",

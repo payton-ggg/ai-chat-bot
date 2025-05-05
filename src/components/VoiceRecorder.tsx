@@ -5,6 +5,7 @@ import { processTranscript } from "../services/ioNet";
 
 const ChatInput: React.FC = () => {
   const { voiceState, setVoiceState, addMessage } = useVoice();
+  const {};
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
