@@ -12,7 +12,7 @@ export const processTranscript = async (
   
   try {
     const response = await fetch(
-      `https://api.intelligence.io.solutions/v1/chat${id !== null ? "s/" + id + "/messages" : "/completions"}`,
+      `https://api.intelligence.io.solutions/api/v1/chat${id !== null ? "s/" + id + "/messages" : "/completions"}`,
       {
         method: "POST",
         headers: {
@@ -55,9 +55,9 @@ export const processTranscript = async (
 
     const data = await response.json();
 
-    if (id === null) {
-      setId(data["id"])
-    }
+    // if (id === null) {
+    //   setId(data["id"])
+    // }
 
     return (
       data["choices"][0]["message"]["content"] ||
