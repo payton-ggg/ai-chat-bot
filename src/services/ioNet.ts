@@ -4,7 +4,6 @@ export const processTranscript = async (
   transcript: string,
   model: string,
   id: string | null,
-  setId: (id: string) => void
 ): Promise<string | undefined> => {
   if (!navigator.onLine) {
     return "You appear to be offline. Please check your internet connection and try again.";
@@ -30,6 +29,7 @@ export const processTranscript = async (
           ],
           temperature: 0.7,
           format: "text",
+          stream: true,
           system:
           "You are a helpful AI assistant. Provide clear, concise, and accurate responses to user questions. Keep responses friendly and conversational, but focused on delivering valuable information.",
         }),
