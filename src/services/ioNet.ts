@@ -2,19 +2,21 @@ const IO_NET_API_KEY = import.meta.env.VITE_IO_NET_API_KEY;
 
 export const processTranscript = async (
   transcript: string,
-  model: string
-): Promise<string> => {
+  model: string,
+  id: string | null,
+  setId: (id: string) => void
+): Promise<string | undefined> => {
   if (!navigator.onLine) {
     return "You appear to be offline. Please check your internet connection and try again.";
   }
-
+  
   try {
     const response = await fetch(
-      "https://api.intelligence.io.solutions/api/v1/chat/completions",
+      `https://api.intelligence.io.solutions/v1/chat${id !== null ? "s/" + id + "/messages" : "/completions"}`,
       {
         method: "POST",
         headers: {
-          accept: "application/json",
+          accept: "text/event-stream",
           Authorization: `Bearer ${IO_NET_API_KEY}`,
           "content-type": "application/json",
         },
@@ -29,11 +31,11 @@ export const processTranscript = async (
           temperature: 0.7,
           format: "text",
           system:
-            "You are a helpful AI assistant. Provide clear, concise, and accurate responses to user questions. Keep responses friendly and conversational, but focused on delivering valuable information.",
+          "You are a helpful AI assistant. Provide clear, concise, and accurate responses to user questions. Keep responses friendly and conversational, but focused on delivering valuable information.",
         }),
       }
     );
-
+    
     if (!response.ok) {
       const errorData = await response.text();
       console.error("IO.net API Error:", {
@@ -52,6 +54,11 @@ export const processTranscript = async (
     }
 
     const data = await response.json();
+
+    if (id === null) {
+      setId(data["id"])
+    }
+
     return (
       data["choices"][0]["message"]["content"] ||
       "I apologize, but I couldn't generate a response at the moment. Please try again."
