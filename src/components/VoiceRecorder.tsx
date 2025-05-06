@@ -6,10 +6,10 @@ import { useChatId, useModelStore } from "../services/store";
 
 const ChatInput: React.FC = () => {
   const { voiceState, setVoiceState, addMessage } = useVoice();
-  const { id, setId } = useChatId();
+  const { id } = useChatId();
   const { model } = useModelStore();
   const [message, setMessage] = useState("");
-  console.log(id)
+  const [isTyping, setIsTyping] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,20 +20,22 @@ const ChatInput: React.FC = () => {
     setMessage("");
     addMessage("user", userMessage);
     setVoiceState("processing");
+    setIsTyping(true);
+
+    let streamedMessage = "";
+    addMessage("assistant", "");
 
     try {
-      const response = await processTranscript(userMessage, model, id, setId);
-      if (response) {
-        addMessage("assistant", response);
-      }
+      await processTranscript(userMessage, model, id, (chunk: string) => {
+        streamedMessage += chunk;
+        addMessage("assistant", streamedMessage, true); // replaceLast = true
+      });
     } catch (error) {
       console.error("Error processing message:", error);
-      addMessage(
-        "assistant",
-        "Sorry, I encountered an error processing your message. Please try again."
-      );
+      addMessage("assistant", "⚠️ Error occurred while processing your message.", true);
     } finally {
       setVoiceState("idle");
+      setIsTyping(false);
     }
   };
 
@@ -59,8 +61,9 @@ const ChatInput: React.FC = () => {
           </button>
         </div>
       </form>
-      {voiceState === "processing" && (
-        <p className="mt-2 text-sm text-gray-500">Processing your message...</p>
+
+      {(voiceState === "processing" || isTyping) && (
+        <p className="mt-2 text-sm text-gray-500">AI is typing...</p>
       )}
     </div>
   );
