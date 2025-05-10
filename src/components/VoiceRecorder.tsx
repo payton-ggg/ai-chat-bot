@@ -28,11 +28,15 @@ const ChatInput: React.FC = () => {
     try {
       await processTranscript(userMessage, model, id, (chunk: string) => {
         streamedMessage += chunk;
-        addMessage("assistant", streamedMessage, true); // replaceLast = true
+        addMessage("assistant", streamedMessage, true);
       });
     } catch (error) {
       console.error("Error processing message:", error);
-      addMessage("assistant", "⚠️ Error occurred while processing your message.", true);
+      addMessage(
+        "assistant",
+        "⚠️ Error occurred while processing your message.",
+        true
+      );
     } finally {
       setVoiceState("idle");
       setIsTyping(false);
