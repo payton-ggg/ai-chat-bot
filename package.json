@@ -13,6 +13,7 @@
     "ai-voice-agent": "file:",
     "dotenv": "^16.5.0",
     "lucide-react": "^0.344.0",
+    "markdown-to-jsx": "^7.7.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zustand": "^5.0.4"

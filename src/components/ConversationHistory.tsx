@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Trash2 } from "lucide-react";
 import { useVoice } from "../contexts/VoiceContext";
 import { Message } from "../types";
+import Markdown from "markdown-to-jsx";
 
 const ConversationHistory: React.FC = () => {
   const { messages, clearConversation } = useVoice();
@@ -47,7 +48,6 @@ const ConversationHistory: React.FC = () => {
           <Trash2 size={18} />
         </button>
       </div>
-
       <div className="flex-1 px-4 py-6 space-y-6">
         {messages.map((message) => (
           <MessageBubble key={message.id} message={message} />
@@ -70,7 +70,9 @@ const MessageBubble: React.FC<{ message: Message }> = ({ message }) => {
             : "bg-gray-100 text-gray-800 rounded-tl-none"
         }`}
       >
-        <p className="whitespace-pre-wrap">{message.content}</p>
+        <p className="whitespace-pre-wrap">
+          <Markdown>{message.content}</Markdown>
+        </p>
         <div
           className={`text-xs mt-1 ${
             isUser ? "text-blue-200" : "text-gray-500"
