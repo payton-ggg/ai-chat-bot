@@ -1,20 +1,92 @@
-// In a real implementation, this would handle communication with the AssemblyAI API
-// For now, we'll mock the functionality
+export class SpeechRecognitionService {
+	private recognition: SpeechRecognition | null = null;
+	private onTranscriptCallback:
+		| ((transcript: string, isFinal: boolean) => void)
+		| null = null;
+	private onStateChangeCallback:
+		| ((state: "idle" | "listening" | "error") => void)
+		| null = null;
 
-const ASSEMBLY_AI_KEY = import.meta.env.ASSEMBLY_AI_KEY;
+	constructor() {
+		if (typeof window !== "undefined") {
+			const SpeechRecognition =
+				window.SpeechRecognition || window.webkitSpeechRecognition;
+			if (SpeechRecognition) {
+				this.recognition = new SpeechRecognition();
+				this.setupRecognition();
+			}
+		}
+	}
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const transcribeAudio = async (_audioBlob: Blob): Promise<string> => {
-  console.log("Would send audio to AssemblyAI with key:", ASSEMBLY_AI_KEY);
+	private setupRecognition() {
+		if (!this.recognition) return;
 
-  // In a real implementation, you would:
-  // 1. Upload the audio file to AssemblyAI
-  // 2. Get a transcript ID
-  // 3. Poll the status endpoint until the transcription is complete
-  // 4. Return the transcript text
+		this.recognition.continuous = true;
+		this.recognition.interimResults = true;
 
-  // For now, we'll just simulate a delay and return a mock response
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+		this.recognition.onstart = () => {
+			this.onStateChangeCallback?.("listening");
+		};
 
-  return "This is a simulated transcription from AssemblyAI.";
-};
+		this.recognition.onend = () => {
+			this.onStateChangeCallback?.("idle");
+		};
+
+		this.recognition.onerror = (event) => {
+			console.error("Speech recognition error:", event.error);
+			this.onStateChangeCallback?.("error");
+		};
+
+		this.recognition.onresult = (event) => {
+			const transcript = Array.from(event.results)
+				.map((result) => result[0].transcript)
+				.join("");
+
+			const isFinal = event.results[event.results.length - 1].isFinal;
+			this.onTranscriptCallback?.(transcript, isFinal);
+		};
+	}
+
+	public setOnTranscriptCallback(
+		callback: (transcript: string, isFinal: boolean) => void
+	) {
+		this.onTranscriptCallback = callback;
+	}
+
+	public setOnStateChangeCallback(
+		callback: (state: "idle" | "listening" | "error") => void
+	) {
+		this.onStateChangeCallback = callback;
+	}
+
+	public startListening() {
+		if (!this.recognition) {
+			console.error("Speech recognition is not supported in this browser");
+			this.onStateChangeCallback?.("error");
+			return;
+		}
+
+		try {
+			this.recognition.start();
+		} catch (error) {
+			console.error("Error starting speech recognition:", error);
+			this.onStateChangeCallback?.("error");
+		}
+	}
+
+	public stopListening() {
+		if (this.recognition) {
+			try {
+				this.recognition.stop();
+			} catch (error) {
+				console.error("Error stopping speech recognition:", error);
+			}
+		}
+	}
+
+	public isSupported(): boolean {
+		return !!this.recognition;
+	}
+}
+
+export const speechRecognitionService = new SpeechRecognitionService();
