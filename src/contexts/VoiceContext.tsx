@@ -1,12 +1,9 @@
-import React, {
-	createContext,
-	useState,
-	useCallback,
-	useContext,
-	useEffect,
-} from "react";
+// VoiceContext.tsx
+import React, { createContext, useState, useCallback, useContext } from "react";
+import SpeechRecognition, {
+	useSpeechRecognition,
+} from "react-speech-recognition";
 import { Message, VoiceContextType, VoiceState } from "../types";
-import { speechRecognitionService } from "../services/assemblyAI";
 
 const VoiceContext = createContext<VoiceContextType | null>(null);
 
@@ -23,7 +20,13 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [voiceState, setVoiceState] = useState<VoiceState>("idle");
-	const [isSupported] = useState(() => speechRecognitionService.isSupported());
+
+	const {
+		transcript,
+		resetTranscript,
+		browserSupportsSpeechRecognition,
+		listening,
+	} = useSpeechRecognition();
 
 	const addMessage = useCallback(
 		(
@@ -63,36 +66,40 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({
 		setMessages([]);
 	}, []);
 
-	useEffect(() => {
-		speechRecognitionService.setOnStateChangeCallback(setVoiceState);
-		speechRecognitionService.setOnTranscriptCallback((transcript, isFinal) => {
-			if (isFinal) {
-				addMessage("user", transcript);
-			}
-		});
-	}, [addMessage]);
-
 	const startListening = useCallback(() => {
-		if (!isSupported) {
+		if (!browserSupportsSpeechRecognition) {
 			setVoiceState("error");
 			return;
 		}
-		speechRecognitionService.startListening();
-	}, [isSupported]);
+
+		setVoiceState("listening");
+		resetTranscript();
+
+		SpeechRecognition.startListening({
+			continuous: true,
+			language: "en-US",
+		});
+	}, [browserSupportsSpeechRecognition, resetTranscript]);
 
 	const stopListening = useCallback(() => {
-		speechRecognitionService.stopListening();
-	}, []);
+		SpeechRecognition.stopListening();
+		setVoiceState("idle");
+
+		if (transcript.trim()) {
+			addMessage("user", transcript.trim());
+			resetTranscript();
+		}
+	}, [transcript, addMessage, resetTranscript]);
 
 	const value: VoiceContextType = {
 		messages,
 		addMessage,
-		voiceState,
+		voiceState: listening ? "listening" : voiceState,
 		setVoiceState,
 		clearConversation,
 		startListening,
 		stopListening,
-		isVoiceSupported: isSupported,
+		isVoiceSupported: browserSupportsSpeechRecognition,
 	};
 
 	return (
