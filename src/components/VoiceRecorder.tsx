@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Send } from "lucide-react";
 import { useVoice } from "../contexts/VoiceContext";
 import { processTranscript } from "../services/ioNet";
-import { useChatId, useModelStore } from "../services/store";
+import { useModelStore } from "../services/store";
 
 const ChatInput: React.FC = () => {
   const { voiceState, setVoiceState, addMessage } = useVoice();
-  const { id } = useChatId();
   const { model } = useModelStore();
   const [message, setMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -26,7 +25,7 @@ const ChatInput: React.FC = () => {
     addMessage("assistant", "");
 
     try {
-      await processTranscript(userMessage, model, id, (chunk: string) => {
+      await processTranscript(userMessage, model, (chunk: string) => {
         streamedMessage += chunk;
         addMessage("assistant", streamedMessage, true);
       });
