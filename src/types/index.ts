@@ -5,7 +5,7 @@ export type Message = {
 	timestamp: Date;
 };
 
-export type VoiceState = "idle" | "listening" | "error";
+export type VoiceState = "idle" | "listening" | "processing" | "error";
 
 export type VoiceContextType = {
 	messages: Message[];
