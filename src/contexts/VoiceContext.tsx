@@ -1,108 +1,117 @@
 // VoiceContext.tsx
-import React, { createContext, useState, useCallback, useContext } from "react";
-import SpeechRecognition, {
-	useSpeechRecognition,
-} from "react-speech-recognition";
+import React, { createContext, useState, useCallback, useContext, useEffect } from "react";
 import { Message, VoiceContextType, VoiceState } from "../types";
+import { speechRecognitionService } from "../services/speechRecognition";
 
 const VoiceContext = createContext<VoiceContextType | null>(null);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useVoice = () => {
-	const context = useContext(VoiceContext);
-	if (!context) {
-		throw new Error("useVoice must be used within a VoiceProvider");
-	}
-	return context;
+  const context = useContext(VoiceContext);
+  if (!context) {
+    throw new Error("useVoice must be used within a VoiceProvider");
+  }
+  return context;
 };
 
 export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({
-	children,
+  children,
 }) => {
-	const [messages, setMessages] = useState<Message[]>([]);
-	const [voiceState, setVoiceState] = useState<VoiceState>("idle");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [voiceState, setVoiceState] = useState<VoiceState>("idle");
+  const [transcript, setTranscript] = useState<string>("");
 
-	const {
-		transcript,
-		resetTranscript,
-		browserSupportsSpeechRecognition,
-		listening,
-	} = useSpeechRecognition();
+  useEffect(() => {
+    speechRecognitionService.setOnTranscriptCallback((text, isFinal) => {
+      setTranscript(text);
+      if (isFinal) {
+        // keep final transcript until stopListening consumes it
+      }
+    });
 
-	const addMessage = useCallback(
-		(
-			role: "user" | "assistant",
-			content: string,
-			replaceLast: boolean = false
-		) => {
-			setMessages((prev) => {
-				if (replaceLast && prev.length > 0) {
-					const updated = [...prev];
-					const last = updated[updated.length - 1];
-					if (last.role === role) {
-						updated[updated.length - 1] = {
-							...last,
-							content,
-							timestamp: new Date(),
-						};
-						return updated;
-					}
-				}
+    speechRecognitionService.setOnStateChangeCallback((state) => {
+      setVoiceState(state);
+    });
+  }, []);
 
-				return [
-					...prev,
-					{
-						id: Date.now().toString(),
-						role,
-						content,
-						timestamp: new Date(),
-					},
-				];
-			});
-		},
-		[]
-	);
+  const addMessage = useCallback(
+    (
+      role: "user" | "assistant",
+      content: string,
+      replaceLast: boolean = false
+    ) => {
+      setMessages((prev) => {
+        if (replaceLast && prev.length > 0) {
+          const updated = [...prev];
+          const last = updated[updated.length - 1];
+          if (last.role === role) {
+            updated[updated.length - 1] = {
+              ...last,
+              content,
+              timestamp: new Date(),
+            };
+            return updated;
+          }
+        }
 
-	const clearConversation = useCallback(() => {
-		setMessages([]);
-	}, []);
+        return [
+          ...prev,
+          {
+            id: Date.now().toString(),
+            role,
+            content,
+            timestamp: new Date(),
+          },
+        ];
+      });
+    },
+    []
+  );
 
-	const startListening = useCallback(() => {
-		if (!browserSupportsSpeechRecognition) {
-			setVoiceState("error");
-			return;
-		}
+  const clearConversation = useCallback(() => {
+    setMessages([]);
+  }, []);
 
-		setVoiceState("listening");
-		resetTranscript();
+  const startListening = useCallback(() => {
+    if (!speechRecognitionService.isSupported()) {
+      setVoiceState("error");
+      return;
+    }
 
-		SpeechRecognition.startListening({
-			continuous: true,
-			language: "en-US",
-		});
-	}, [browserSupportsSpeechRecognition, resetTranscript]);
+    setTranscript("");
+    setVoiceState("listening");
+    // set language from browser settings
+    const lang =
+      typeof navigator !== "undefined" && navigator.language
+        ? navigator.language
+        : "en-US";
+    speechRecognitionService.setLanguage(lang);
+    speechRecognitionService.startListening();
+  }, []);
 
-	const stopListening = useCallback(() => {
-		SpeechRecognition.stopListening();
-		setVoiceState("idle");
+  const stopListening = useCallback(() => {
+    speechRecognitionService.stopListening();
+    setVoiceState("idle");
 
-		if (transcript.trim()) {
-			addMessage("user", transcript.trim());
-			resetTranscript();
-		}
-	}, [transcript, addMessage, resetTranscript]);
+    if (transcript.trim()) {
+      addMessage("user", transcript.trim());
+      setTranscript("");
+    }
+  }, [transcript, addMessage]);
 
 	const value: VoiceContextType = {
 		messages,
 		addMessage,
-		voiceState: listening ? "listening" : voiceState,
+		voiceState,
 		setVoiceState,
 		clearConversation,
 		startListening,
 		stopListening,
-		isVoiceSupported: browserSupportsSpeechRecognition,
+		isVoiceSupported: speechRecognitionService.isSupported(),
+        transcript,
 	};
 
-	return (
-		<VoiceContext.Provider value={value}>{children}</VoiceContext.Provider>
-	);
+  return (
+    <VoiceContext.Provider value={value}>{children}</VoiceContext.Provider>
+  );
 };

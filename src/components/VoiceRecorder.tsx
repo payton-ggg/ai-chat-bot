@@ -5,13 +5,14 @@ import { processTranscript } from "../services/ioNet";
 import { useModelStore, useChatId } from "../services/store";
 
 const ChatInput: React.FC = () => {
-  const {
-    voiceState,
-    setVoiceState,
-    addMessage,
-    startListening,
-    stopListening,
-  } = useVoice();
+    const {
+        voiceState,
+        setVoiceState,
+        addMessage,
+        startListening,
+        stopListening,
+        transcript,
+    } = useVoice();
   const { id } = useChatId();
   const { model } = useModelStore();
   const [message, setMessage] = useState("");
@@ -94,18 +95,18 @@ const ChatInput: React.FC = () => {
             )}
           </button>
 
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder={
-              voiceState === "listening"
-                ? "Listening..."
-                : "Type your message..."
-            }
-            disabled={voiceState === "processing"}
-            className="w-full px-4 py-3 pl-12 pr-12 rounded-lg border border-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
-          />
+                    <input
+                        type="text"
+                        value={voiceState === "listening" ? transcript : message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder={
+                            voiceState === "listening"
+                                ? "Listening..."
+                                : "Type your message..."
+                        }
+                        disabled={voiceState === "processing"}
+                        className="w-full px-4 py-3 pl-12 pr-12 rounded-lg border border-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    />
 
           <button
             type="submit"

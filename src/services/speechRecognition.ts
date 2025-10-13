@@ -1,5 +1,5 @@
 export class SpeechRecognitionService {
-	private recognition: SpeechRecognition | null = null;
+	private recognition: any | null = null;
 	private onTranscriptCallback:
 		| ((transcript: string, isFinal: boolean) => void)
 		| null = null;
@@ -23,6 +23,13 @@ export class SpeechRecognitionService {
 
 		this.recognition.continuous = true;
 		this.recognition.interimResults = true;
+		// default language from browser
+		try {
+			(this.recognition as any).lang =
+				typeof navigator !== "undefined" && navigator.language
+					? navigator.language
+					: "en-US";
+		} catch {}
 
 		this.recognition.onstart = () => {
 			this.onStateChangeCallback?.("listening");
@@ -57,6 +64,16 @@ export class SpeechRecognitionService {
 		callback: (state: "idle" | "listening" | "error") => void
 	) {
 		this.onStateChangeCallback = callback;
+	}
+
+	public setLanguage(lang: string) {
+		if (this.recognition) {
+			try {
+				(this.recognition as any).lang = lang;
+			} catch (error) {
+				console.error("Error setting language:", error);
+			}
+		}
 	}
 
 	public startListening() {
