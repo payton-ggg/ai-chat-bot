@@ -21,6 +21,8 @@ export type VoiceContextType = {
     stopListening: () => void;
     isVoiceSupported: boolean;
     transcript: string;
+    language?: string;
+    setLanguage?: (lang: string) => void;
 };
 
 declare global {

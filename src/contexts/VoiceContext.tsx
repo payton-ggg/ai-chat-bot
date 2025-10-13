@@ -20,6 +20,17 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({
   const [messages, setMessages] = useState<Message[]>([]);
   const [voiceState, setVoiceState] = useState<VoiceState>("idle");
   const [transcript, setTranscript] = useState<string>("");
+  const [language, setLanguageState] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("sr_lang");
+      if (saved) return saved;
+      const fromNavigator = (navigator.languages && navigator.languages[0]) || navigator.language || "en-US";
+      // Предпочтение русскому, если доступно
+      const ru = (navigator.languages || []).find((l) => l.toLowerCase().startsWith("ru"));
+      return ru || fromNavigator || "en-US";
+    }
+    return "en-US";
+  });
 
   useEffect(() => {
     speechRecognitionService.setOnTranscriptCallback((text, isFinal) => {
@@ -32,6 +43,8 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({
     speechRecognitionService.setOnStateChangeCallback((state) => {
       setVoiceState(state);
     });
+    // применяем язык при инициализации
+    speechRecognitionService.setLanguage(language);
   }, []);
 
   const addMessage = useCallback(
@@ -80,14 +93,10 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({
 
     setTranscript("");
     setVoiceState("listening");
-    // set language from browser settings
-    const lang =
-      typeof navigator !== "undefined" && navigator.language
-        ? navigator.language
-        : "en-US";
-    speechRecognitionService.setLanguage(lang);
+    // применяем выбранный язык (из состояния/локального хранилища)
+    speechRecognitionService.setLanguage(language);
     speechRecognitionService.startListening();
-  }, []);
+  }, [language]);
 
   const stopListening = useCallback(() => {
     speechRecognitionService.stopListening();
@@ -109,6 +118,16 @@ export const VoiceProvider: React.FC<{ children: React.ReactNode }> = ({
 		stopListening,
 		isVoiceSupported: speechRecognitionService.isSupported(),
         transcript,
+        language,
+        setLanguage: (lang: string) => {
+          try {
+            setLanguageState(lang);
+            speechRecognitionService.setLanguage(lang);
+            if (typeof window !== "undefined") localStorage.setItem("sr_lang", lang);
+          } catch (e) {
+            console.error("Failed to set language:", e);
+          }
+        },
 	};
 
   return (
